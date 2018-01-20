@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Orders
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>    
+    <a ion-item (click)="openModal({orderDetails: order.OrderDetails})" *ngFor="let order of myOrders">
+      <h2>{{order.OrderName}}</h2>
+      <p>{{order.OrderDate ? order.OrderDate.toLocaleDateString('en-IN') : ""}}</p>
+    </a>    
+  </ion-list>
+</ion-content>

@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <ion-icon name="contact" color="primary"></ion-icon>
+      </ion-avatar>
+      <h2>{{profile.FullName}}</h2>
+      <p>{{profile.MobileNumber}}</p>
+    </ion-item>
+    <ion-row no-padding>
+      <ion-col text-left>
+        <button ion-button clear small color="dark" icon-start>
+          <b>Address</b>
+        </button>
+      </ion-col>
+      <ion-col text-right *ngIf="profile.IsAdmin">
+        <button *ngIf="!isEditAddressClicked" ion-button clear small icon-start (click)="addressEdit_Click()">
+          <ion-icon name='create'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-left>
+      <ion-col text-left>
+        <p *ngIf="!isEditAddressClicked">{{profile.Address}}</p>
+        <ion-grid *ngIf="isEditAddressClicked" no-padding>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" placeholder="Address1" [(ngModel)]="profile.Address1"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" placeholder="Address2" [(ngModel)]="profile.Address2"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" placeholder="City" [(ngModel)]="profile.City"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" placeholder="State" [(ngModel)]="profile.State"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" placeholder="Zip" [(ngModel)]="profile.Zip"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button ion-button block (click)="addressSave_Click()">Save</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+
+    <ion-row no-padding>
+      <ion-col text-left>
+        <button ion-button clear small color="dark" icon-start>
+          <b>Additional Info</b>
+        </button>
+      </ion-col>
+      <ion-col text-right *ngIf="profile.IsAdmin">
+        <button *ngIf="!isEditProfileClicked" ion-button clear small icon-start (click)="profileEdit_Click()">
+          <ion-icon name='create'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-left>
+      <ion-col text-left>
+        <ion-grid no-padding>
+          <ion-row *ngIf="!isEditProfileClicked">
+            <ion-col>
+              <ion-label stacked class="ionLabel">Gender</ion-label>
+              <p>{{profile.Gender}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="isEditProfileClicked">
+            <ion-col>
+              <ion-label stacked class="ionLabel">Gender</ion-label>
+              <ion-select [(ngModel)]="profile.Gender" interface="action-sheet">
+                <ion-option value="Male">Male</ion-option>
+                <ion-option value="Female">Female</ion-option>
+                <ion-option value="Other">Other</ion-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="!isEditProfileClicked">
+            <ion-col>
+              <ion-label stacked class="ionLabel">Birth Date</ion-label>
+              <p>{{profile.BirthDate}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="isEditProfileClicked">
+            <ion-col>
+              <ion-label stacked class="ionLabel">Birth Date</ion-label>
+              <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="profile.BirthDate"></ion-datetime>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="isEditProfileClicked">
+            <ion-col>
+              <button ion-button block (click)="profileSave_Click()">Save</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="light" block (click)="logout()" *ngIf="!profile.IsAdmin">Log Out</button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-card-content class="alignLeft">
+      <h3>
+        <b>Gender</b>
+      </h3>
+      <p>{{profile.Gender}}</p>
+    </ion-card-content>
+    <ion-card-content class="alignLeft">
+      <h3>
+        <b>Birth Date</b>
+      </h3>
+      <p>{{profile.BirthDate ? profile.BirthDate.toLocaleDateString() : ""}}</p>
+    </ion-card-content> -->
+  </ion-card>
+</ion-content>

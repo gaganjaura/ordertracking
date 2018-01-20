@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Search Customer
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button clear small color="danger" (click)="logout()" icon-start>
+              <ion-icon name="power"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="customer_click(item.id)">
+            {{ item.name }}
+            <br>
+            {{ item.mobile }}
+        </button>
+    </ion-list>
+</ion-content>
